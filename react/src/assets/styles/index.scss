@@ -1,0 +1,52 @@
+// common
+.pointer {
+  cursor: pointer;
+}
+
+.relative {
+  position: relative;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.flex {
+  display: flex;
+}
+
+// Markup
+hr {
+  display: none;
+}
+
+h1, footer {
+  margin: 0.5rem;
+}
+
+.container {
+  @extend .flex;
+  min-height: 300px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  .nav {
+    min-height: 300px;
+    background-color: skyblue;
+    ul {
+      list-style: none;
+      margin: 0.5rem 0 0.5rem 0;
+      padding: 0;
+      h2 {
+        margin: 0;
+        padding: 0.5rem;
+      }
+    }
+  }
+  .contents {
+    margin-left: 1rem;
+  }
+}
