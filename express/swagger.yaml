@@ -1,0 +1,87 @@
+swagger: "2.0"
+info:
+  description: "This is a sample member test"
+  version: "1.0.0"
+  title: "Swagger Member"
+host: "localhost:3100"
+basePath: "/api/v1/"
+tags:
+- name: "member"
+  description: "Member Test2"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "http"
+- "https"
+paths:
+  /member:
+    get:
+      tags:
+      - "member"
+      summary: "Read Members"
+      responses:
+        200:
+          description: "successful operation"
+    post:
+      tags:
+      - "member"
+      summary: "Create Member"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/member"
+      responses:
+        200:
+          description: "successful operation"
+    put:
+      tags:
+      - "member"
+      summary: "Update Member"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/updateMember"
+      responses:
+        200:
+          description: "successful operation"
+  /member/{key}:
+    delete:
+      tags:
+      - "member"
+      summary: "Delete Member"
+      parameters:
+      - name: "key"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+definitions:
+  member:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "홍길선"
+      age:
+        type: "string"
+        example: "38"
+      createdDate:
+        type: "datetime"
+        example: "2018-10-03T12:11:30+09:00"
+  updateMember:
+    type: "object"
+    properties:
+      key:
+        type: integer
+        format: "int64"
+        example: "1"
+      member:
+        $ref: "#/definitions/member"
