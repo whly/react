@@ -6,7 +6,11 @@ import querystring from 'querystring';
 
 
 class Search extends Component {
-  
+  read() {
+    const { searchStore } = this.props;
+    searchStore.read();
+  }
+
   keyPress(e) {
     if (e.charCode === 13) {
       this.read();
