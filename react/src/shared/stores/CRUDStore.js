@@ -10,7 +10,7 @@ export default class CRUDStore {
     }
 
     members = []
-    
+
     create(spinnerTarget) {
         // validation
         if (!this.member.name) {
@@ -45,7 +45,7 @@ export default class CRUDStore {
             utils.apiCommonError(error);
         });
     }
-    
+
     update(spinnerTarget, key) {
         const member = this.members[key];
         if (!member.name) {
@@ -57,7 +57,8 @@ export default class CRUDStore {
             return;
         }
         const spinner = utils.spinner().spin(spinnerTarget);
-        axios.put('https://test-whly.c9users.io:8081/api/v1/member', { key, member }).then(response => {
+        // axios.put('https://test-whly.c9users.io:8081/api/v1/member', { key, member }).then(response => {
+        axios.put(`https://test-whly.c9users.io:8081/api/v1/member/${member.idx}`, member).then(response => {
             console.log(response);
             spinner.stop();
             utils.toastr().success(response.data.result);
@@ -66,13 +67,14 @@ export default class CRUDStore {
             utils.apiCommonError(error, spinner);
         });
     }
-    
+
     del(spinnerTarget, key) {
         if (!window.confirm('Are you sure?')) {
             return;
         }
         const spinner = utils.spinner().spin(spinnerTarget);
-        axios.delete(`https://test-whly.c9users.io:8081/api/v1/member/${key}`).then(response => {
+        // axios.delete(`https://test-whly.c9users.io:8081/api/v1/member/${key}`).then(response => {
+        axios.delete(`https://test-whly.c9users.io:8081/api/v1/member/${this.members[key].idx}`).then(response => {
             console.log(response);
             spinner.stop();
             utils.toastr().success(response.data.result);
@@ -81,7 +83,7 @@ export default class CRUDStore {
             utils.apiCommonError(error, spinner);
         });
     }
-    
+
 
 }
 
